@@ -16,7 +16,7 @@ def main():
     """Main method that retrieves the Interface details from the router via RESTCONF."""
 
     # url string to issue GET request
-    url = "https://{h}/restconf/data/ietf-interfaces:interfaces/interface".format(h=ipAddress)
+    url = "https://{h}/restconf/data/Cisco-IOS-XE-native:native/hostname".format(h=ipAddress)
 
     # These headers reecive the data in json format
     headers = {'Content-Type': 'application/yang-data+json',

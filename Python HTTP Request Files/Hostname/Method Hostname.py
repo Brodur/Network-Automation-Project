@@ -7,16 +7,15 @@ requests.packages.urllib3.disable_warnings()
 
 # The variables below are the credentials for the cisco devnet sandbox router
 # Might need to change them for the web app
-ipAddress = '10.10.20.48'
-username = 'developer'
-password = 'C1sco12345'
+#ipAddress = '10.10.20.48'
+#username = 'developer'
+#password = 'C1sco12345'
 
 # create a main() method
-def main():
-    """Main method that retrieves the Interface details from the router via RESTCONF."""
+def hostname(host,username,password):
 
     # url string to issue GET request
-    url = "https://{h}/restconf/data/ietf-interfaces:interfaces/interface".format(h=ipAddress)
+    url = "https://{h}/restconf/data/Cisco-IOS-XE-native:native/hostname".format(h=host)
 
     # These headers reecive the data in json format
     headers = {'Content-Type': 'application/yang-data+json',
@@ -27,7 +26,6 @@ def main():
                             headers=headers, verify=False)
 
     # print the json that is returned
-    print(response.text)
+    return(response.text)
 
-if __name__ == '__main__':
-    sys.exit(main())
+hostname('10.10.20.48','developer','password')

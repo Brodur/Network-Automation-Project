@@ -13,18 +13,22 @@ password = 'C1sco12345'
 
 # create a main() method
 def main():
-    """Main method that retrieves the Interface details from the router via RESTCONF."""
+    """Main method that retrieves the details from the router via RESTCONF."""
 
     # url string to issue GET request
-    url = "https://{h}/restconf/data/ietf-interfaces:interfaces/interface".format(h=ipAddress)
+    url = "https://{h}/restconf/data/Cisco-IOS-XE-native:native/enable/password/secret".format(h=ipAddress)
+
+    # THIS Line will need to be altered for the website, but essentially, we just want user input
+    enablePassword = input('Enter password: ')
+    payload = "{\"secret\": \"" + enablePassword + "\"}"
 
     # These headers reecive the data in json format
     headers = {'Content-Type': 'application/yang-data+json',
                'Accept': 'application/yang-data+json'}
 
     # this statement performs a GET on the specified url
-    response = requests.get(url, auth=(username, password),
-                            headers=headers, verify=False)
+    response = requests.put(url, auth=(username, password),
+                            data=payload, headers=headers, verify=False)
 
     # print the json that is returned
     print(response.text)

@@ -13,10 +13,10 @@ password = 'C1sco12345'
 
 # create a main() method
 def main():
-    """Main method that retrieves the Interface details from the router via RESTCONF."""
+    """Main method that retrieves the Version details from the router via RESTCONF."""
 
     # url string to issue GET request
-    url = "https://{h}/restconf/data/ietf-interfaces:interfaces/interface".format(h=ipAddress)
+    url = "https://{h}/restconf/data/Cisco-IOS-XE-native:native/ipv6/unicast-routing".format(h=ipAddress)
 
     # These headers reecive the data in json format
     headers = {'Content-Type': 'application/yang-data+json',
