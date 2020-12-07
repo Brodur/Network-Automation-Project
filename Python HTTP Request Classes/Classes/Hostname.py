@@ -22,7 +22,7 @@ class Hostname:
                                 headers=headers, verify=False)
 
         # print the json that is returned
-        print(response.text)
+        # print(response.text)
         return(response.text)   
 
     def setHostname(self):
