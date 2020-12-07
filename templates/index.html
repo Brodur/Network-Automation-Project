@@ -26,7 +26,7 @@
       <form action="/config/set-hostname" method="post">
         <div class="form-group">
           <label for="hostname-hostname">Update Hostname</label>
-          <input type="text" class="form-control" id="hostname-hostname" placeholder="ex: BLDG1-F3-200-R2">
+          <input type="text" class="form-control" id="hostname-hostname" placeholder="ex: BLDG1-F3-200-R2" value="{{ Null }}"/>
           <small id="hostnameHelp" class="form-text text-muted">Enter the new desired hostname.</small>
         </div>
         <button type="submit" class="btn btn-primary">Update Hostname</button>
@@ -58,7 +58,7 @@
         <div class="form-group">
           <label for="banner-motd">Update Banner</label>
           <textarea class="form-control" id="banner-motd" rows="3"></textarea>
-          <small id="bannerHelp" class="form-text text-muted">Enter the new desired message of the day banner.</small>
+          <small id="bannerHelp" class="form-text text-muted" value="{{ Null }}">Enter the new desired message of the day banner.</small>
         </div>
         <button type="submit" class="btn btn-primary">Update Banner</button>
       </form>
