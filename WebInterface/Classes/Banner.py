@@ -1,14 +1,15 @@
 import sys
 import requests
+import json
 
 requests.packages.urllib3.disable_warnings()
 
 class Banner:
-    def __init__(self, hostAddress, username, password, banner):
+    def __init__(self, hostAddress, username, password):
         self.hostAddress = hostAddress
         self.username = username
         self.password = password
-        self.banner = banner
+        # self.banner = banner
     
     def getBanner(self):
         url = "https://{h}/restconf/data/Cisco-IOS-XE-native:native/banner/motd/banner".format(h=self.hostAddress)
@@ -22,15 +23,15 @@ class Banner:
                                 headers=headers, verify=False)
 
         # print the json that is returned
-        print(response.text)
-        return(response.text)   
+        # print(response.text)
+        return(json.loads(response.text))   
 
-    def setBanner(self):
+    def setBanner(self, banner):
         # url string to issue GET request
         url = "https://{h}/restconf/data/Cisco-IOS-XE-native:native/banner/motd/banner".format(h=self.hostAddress)
 
         # THIS Line will need to be altered for the website, but essentially, we just want user input
-        payload = "{\"banner\": \"" + self.banner + "\"}"
+        payload = "{\"banner\": \"" + banner + "\"}"
 
         # These headers reecive the data in json format
         headers = {'Content-Type': 'application/yang-data+json',
@@ -45,7 +46,7 @@ class Banner:
 
 #Below is just testing out the methods above
 #hostname1 is just for python, website will need user input
-banner = Banner('10.10.20.48','developer','C1sco12345','No Unauthorized Access Is Permitted')
-returnedBanner = banner.getBanner()
-banner = banner.setBanner()
-print(returnedBanner)
+# banner = Banner('10.10.20.48','developer','C1sco12345')
+# returnedBanner = banner.getBanner()
+# banner = banner.setBanner()
+# print(returnedBanner)
