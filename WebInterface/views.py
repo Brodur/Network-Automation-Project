@@ -8,10 +8,14 @@ from .Classes.Hostname import *
 # Create your views here.
 
 def index(request):
+  hostname1 = Hostname('10.10.20.48','developer','C1sco12345')
+  hostname = hostname1.getHostname()
+#   hostname = json.loads(hostname)
+  hostname = hostname['Cisco-IOS-XE-native:hostname']
   context = {
-    'sample_var': '\''Hostname.getHostname'\'',
-    'bannerMotd': 'Unauthorized access is prohibited!',
-    'hostname': 'R1-BLDG2'
+    'sample_var': hostname,
+    'bannerMotd': 'afsdfsdfsaseawe1 ibited!',
+    'hostname': hostname
   }
 
   return render(request, 'index.html', context)
