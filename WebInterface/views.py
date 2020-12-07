@@ -10,7 +10,7 @@ from GetBanner import *
 
 def index(request):
   context = {
-    'sample_var': 'Hello, my name is Jeff'
+    'sample_var': 'Hostname.getHostname'
   }
 
   return render(request, 'index.html', context)
