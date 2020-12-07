@@ -13,7 +13,6 @@ def index(request):
 #   hostname = json.loads(hostname)
   hostname = hostname['Cisco-IOS-XE-native:hostname']
   context = {
-    'sample_var': hostname,
     'bannerMotd': 'afsdfsdfsaseawe1 ibited!',
     'hostname': hostname
   }
