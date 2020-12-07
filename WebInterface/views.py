@@ -8,18 +8,10 @@ from GetBanner import *
 
 # Create your views here.
 
-<<<<<<< HEAD
-# def index(request):
-#   return HttpResponse("Hello World,")
-
-Hostname.getHostname
-
-  
-=======
 def index(request):
   context = {
     'sample_var': 'Hello, my name is Jeff'
   }
 
   return render(request, 'index.html', context)
->>>>>>> origin/views-templates
+
