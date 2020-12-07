@@ -9,12 +9,10 @@ from .Classes.Hostname import *
 
 def index(request):
   context = {
-
-    'sample_var': 'Hostname.getHostname'
-    'sample_var': 'Hello, my name is Jeff',
+    'sample_var': '\''Hostname.getHostname'\'',
     'bannerMotd': 'Unauthorized access is prohibited!',
     'hostname': 'R1-BLDG2'
   }
 
   return render(request, 'index.html', context)
-  print(Hostname.getHostname())
+#   print(Hostname.getHostname())
