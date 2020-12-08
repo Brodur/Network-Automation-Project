@@ -22,7 +22,7 @@
     </div>
     <div class="tab-pane fade" id="hostname-configure" role="tabpanel">
       <!-- Edit Hostname -->
-      <form action="/config/set-hostname" method="post">
+      <form action="/config/set-hostname" method="post">{% csrf_token %}
         <div class="form-group">
           <label for="hostname-hostname">Update Hostname</label>
           <input name="hostname-hostname" type="text" class="form-control" id="hostname-hostname" placeholder="ex: BLDG1-F3-200-R2" value="{{ hostname }}"/>
@@ -54,7 +54,7 @@
     </div>
     <!-- Edit Banner -->
     <div class="tab-pane fade" id="banner-configure" role="tabpanel">
-      <form action="/config/set-banner" method="post">
+      <form action="/config/set-banner" method="post">{% csrf_token %}
         <div class="form-group">
           <label for="banner-motd">Update Banner</label>
           <textarea name="banner-motd" class="form-control" id="banner-motd" rows="3">{{ bannerMotd }}</textarea>
@@ -86,7 +86,7 @@
     </div>
     <div class="tab-pane fade" id="interfaces-configure" role="tabpanel">
       <!-- Edit interfaces -->
-      <form action="/config/set-interface-ip" method="post">
+      <form action="/config/set-interface-ip" method="post">{% csrf_token %}
         <div class="form-group">
           <label for="interfaces-interface">Interface</label>
           <select name="interfaces-interface" id="interfaces-interface" class="form-control">
@@ -131,7 +131,7 @@
     </div>
     <div class="tab-pane fade" id="interfacesDesc-configure" role="tabpanel">
       <!-- Edit interfacesDesc -->
-      <form action="/config/set-interface-description" method="post">
+      <form action="/config/set-interface-description" method="post">{% csrf_token %}
         <div class="form-group">
           <label for="interfaces-interface">Interface</label>
           <select name="interfaces-interface" id="interfaces-interface-desc" class="form-control">
@@ -171,7 +171,7 @@
     </div>
     <div class="tab-pane fade" id="enable-secret-configure" role="tabpanel">
       <!-- Edit enable-secret -->
-      <form action="/config/set-enabe-password" method="post">
+      <form action="/config/set-enabe-password" method="post">{% csrf_token %}
         <div class="form-group">
           <label for="enable-secret">Update Password</label>
           <input name="enabe-password" type="text" class="form-control" id="enable-secret" placeholder="ex: cisco"/>
@@ -203,7 +203,7 @@
     </div>
     <div class="tab-pane fade" id="console-timeout-configure" role="tabpanel">
       <!-- Edit console-timeout -->
-      <form action="/config/set-console-timeout" method="post">
+      <form action="/config/set-console-timeout" method="post">{% csrf_token %}
         <div class="form-group">
           <label for="console-timeout-minutes">Minutes</label>
           <input name="console-timeout-minutes" type="number" class="form-control" id="console-timeout-minutes" min="0" max="35791" value="{{ Null }}"/>
