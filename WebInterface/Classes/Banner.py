@@ -9,12 +9,11 @@ class Banner:
         self.hostAddress = hostAddress
         self.username = username
         self.password = password
-        # self.banner = banner
     
     def getBanner(self):
         url = "https://{h}/restconf/data/Cisco-IOS-XE-native:native/banner/motd/banner".format(h=self.hostAddress)
 
-        # These headers reecive the data in json format
+        # These headers receive the data in json format
         headers = {'Content-Type': 'application/yang-data+json',
                    'Accept': 'application/yang-data+json'}
 
@@ -22,8 +21,6 @@ class Banner:
         response = requests.get(url, auth=(self.username, self.password),
                                 headers=headers, verify=False)
 
-        # print the json that is returned
-        # print(response.text)
         return(json.loads(response.text))   
 
     def setBanner(self, banner):
@@ -41,12 +38,4 @@ class Banner:
         response = requests.put(url, auth=(self.username, self.password),
                                 data=payload, headers=headers, verify=False)
 
-        # print the json that is returned
         return(response.text)
-
-#Below is just testing out the methods above
-#hostname1 is just for python, website will need user input
-# banner = Banner('10.10.20.48','developer','C1sco12345')
-# returnedBanner = banner.getBanner()
-# banner = banner.setBanner()
-# print(returnedBanner)

@@ -1,20 +1,20 @@
 import sys
 import requests
+import json
+
 
 requests.packages.urllib3.disable_warnings()
 
 class InterfaceDescription:
-    def __init__(self, hostAddress, username, password, interface, description):
+    def __init__(self, hostAddress, username, password):
         self.hostAddress = hostAddress
         self.username = username
         self.password = password
-        self.interface = interface
-        self.description = description
     
-    def getInterfaceDescription(self):
-        url = "https://{h}/restconf/data/ietf-interfaces:interfaces/interface={j}/description".format(h=self.hostAddress,j=self.interface)
+    def getInterfaceDescription(self, interface):
+        url = "https://{h}/restconf/data/ietf-interfaces:interfaces/interface={j}/description".format(h=self.hostAddress,j=interface)
 
-        # These headers reecive the data in json format
+        # These headers receive the data in json format
         headers = {'Content-Type': 'application/yang-data+json',
                    'Accept': 'application/yang-data+json'}
 
@@ -23,15 +23,14 @@ class InterfaceDescription:
                                 headers=headers, verify=False)
 
         # print the json that is returned
-        print(response.text)
-        return(response.text)   
+        return(json.loads(response.text))   
 
-    def setInterfaceDescription(self):
+    def setInterfaceDescription(self, description, interface):
         # url string to issue GET request
-        url = "https://{h}/restconf/data/ietf-interfaces:interfaces/interface={j}/description".format(h=self.hostAddress,j=self.interface)
+        url = "https://{h}/restconf/data/ietf-interfaces:interfaces/interface={j}/description".format(h=self.hostAddress,j=interface)
 
         # THIS Line will need to be altered for the website, but essentially, we just want user input
-        payload = "{\"ietf-interfaces:description\": \"" + self.description + "\"}"
+        payload = "{\"ietf-interfaces:description\": \"" + description + "\"}"
 
         # These headers reecive the data in json format
         headers = {'Content-Type': 'application/yang-data+json',
@@ -43,9 +42,3 @@ class InterfaceDescription:
 
         # print the json that is returned
         return(response.text)
-
-#Below is just testing out the methods above
-#hostname1 is just for python, website will need user input
-description = InterfaceDescription('10.10.20.48','developer','C1sco12345','GigabitEthernet3','Link to LAN')
-returnedDescription = description.getInterfaceDescription()
-description = description.setInterfaceDescription()

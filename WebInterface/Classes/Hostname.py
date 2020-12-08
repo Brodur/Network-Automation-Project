@@ -9,12 +9,11 @@ class Hostname:
         self.hostAddress = hostAddress
         self.username = username
         self.password = password
-        # self.hostname = hostname
     
     def getHostname(self):
         url = "https://{h}/restconf/data/Cisco-IOS-XE-native:native/hostname".format(h=self.hostAddress)
 
-        # These headers reecive the data in json format
+        # These headers receive the data in json format
         headers = {'Content-Type': 'application/yang-data+json',
                    'Accept': 'application/yang-data+json'}
 
@@ -23,7 +22,6 @@ class Hostname:
                                 headers=headers, verify=False)
 
         # print the json that is returned
-        # print(response.text)
         return(json.loads(response.text))   
 
     def setHostname(self, hostname):
@@ -43,10 +41,3 @@ class Hostname:
 
         # print the json that is returned
         return(response.text)
-
-#Below is just testing out the methods above
-#hostname1 is just for python, website will need user input
-# hostname1 = Hostname('10.10.20.48','developer','C1sco12345','CSR-1')
-# returnedHostname = hostname1.getHostname()
-# hostname1 = hostname1.setHostname()
-# print(returnedHostname)
