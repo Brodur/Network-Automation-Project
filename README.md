@@ -13,4 +13,6 @@ Webpage to view and update configuration items on a Cisco CSR1000v.
 - Django
   - `python -m pip install Django`
 
+## Run
+From the root of the project directory(where `manage.py` is located), run `python manage.py runserver`.
 
