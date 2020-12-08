@@ -16,7 +16,7 @@ from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 hostname1 = Hostname('10.10.20.48','developer','C1sco12345')
 banner = Banner('10.10.20.48','developer','C1sco12345')
-# enPassword = EnablePassword('10.10.20.48','developer','C1sco12345')
+enablePassword = EnablePassword('10.10.20.48','developer','C1sco12345')
 # execTimout = ExecTimeout('10.10.20.48','developer','C1sco12345')
 # intAddress = InterfaceAddress('10.10.20.48','developer','C1sco12345')
 # intDescription = InterfaceDescription('10.10.20.48','developer','C1sco12345')
@@ -28,8 +28,8 @@ def index(request):
   hostname = hostname['Cisco-IOS-XE-native:hostname']   
   returnedBanner = banner.getBanner()
   returnedBanner = returnedBanner['Cisco-IOS-XE-native:banner'] 
-  # password = enPassword.getEnablePassword() 
-  # password = password['Cisco-IOS-XE-native:']
+  password = enablePassword.getEnablePassword()
+  password = password['Cisco-IOS-XE-native:enable-password']
   # timeout = execTimeout.getExecTimeout()
   # timeout = timeout['Cisco-IOS-XE-native:']
   # ipAddress = intAddress.getInterfaceAddress()
@@ -41,7 +41,11 @@ def index(request):
 
   context = {
     'bannerMotd': returnedBanner,
-    'hostname': hostname
+    'hostname': hostname,
+    'enablePassword': password,
+    'interfaceAddress': '192.168.0.0',
+    'interfaceDescription': 'this is a test',
+    'execTimeout': '10 minutes'
   }
 
   return render(request, 'index.html', context)
@@ -56,3 +60,8 @@ def set_hostname(request):
 def set_banner(request):
     newBanner = banner.setBanner(request.POST.get('banner-motd'))
     return HttpResponse(newBanner)
+
+# @csrf_exempt
+# def set_password(request):
+#     newPassword = enablePassword.setEnablePassword(request.POST.get('enable-password'))
+#     return HttpResponse(newPassword)

@@ -24,7 +24,7 @@ class EnablePassword:
 
         return(json.loads(response.text)) 
 
-    def setEnablePassworde(self, enablePassword):
+    def setEnablePassword(self, enablePassword):
         # url string to issue GET request
         url = "https://{h}/restconf/data/Cisco-IOS-XE-native:native/enable/password/secret".format(h=self.hostAddress)
 
