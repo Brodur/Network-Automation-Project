@@ -21,7 +21,7 @@ class Banner:
         response = requests.get(url, auth=(self.username, self.password),
                                 headers=headers, verify=False)
 
-        return(json.loads(response.text))   
+        return(json.loads(response.text))  
 
     def setBanner(self, banner):
         # url string to issue GET request
