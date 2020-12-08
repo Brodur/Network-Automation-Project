@@ -30,9 +30,11 @@ def index(request):
 
 @csrf_exempt
 def set_hostname(request):
-#     host
+      
     newHostname = hostname1.setHostname(request.POST.get('hostname-hostname'))
     return HttpResponse(newHostname)
+
 @csrf_exempt
 def set_banner(request):
-    return HttpResponse('banner banner banner')
+    newBanner = banner.setBanner(request.POST.get('banner-motd'))
+    return HttpResponse(newBanner)
