@@ -21,7 +21,6 @@ class Banner:
         response = requests.get(url, auth=(self.username, self.password),
                                 headers=headers, verify=False)
 
-        # print the json that is returned
         return(json.loads(response.text))   
 
     def setBanner(self, banner):
@@ -39,5 +38,4 @@ class Banner:
         response = requests.put(url, auth=(self.username, self.password),
                                 data=payload, headers=headers, verify=False)
 
-        # print the json that is returned
         return(response.text)

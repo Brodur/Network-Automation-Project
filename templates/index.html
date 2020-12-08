@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Home</h1>
+<!-- Hostname -->
+<div id="hostname" class="mt-2">
+  <h5>Hostname</h5>
+  <ul class="nav nav-tabs" id="hostnameTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="hostname-show-tab" data-toggle="tab" href="#hostname-show">Show</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="hostname-config-tab" data-toggle="tab" href="#hostname-configure" role="tab" aria-controls="profile" aria-selected="false">Configure</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="hostnameTabContent">
+    <!-- Tab Contents -->
+    <div class="tab-pane fade show active" id="hostname-show" role="tabpanel">
+      <!-- Show Hostname -->
+      <p><strong>Hostname:</strong> {{ hostname }}</p>
+    </div>
+    <div class="tab-pane fade" id="hostname-configure" role="tabpanel">
+      <!-- Edit Hostname -->
+      <form action="/config/set-hostname" method="post">
+        <div class="form-group">
+          <label for="hostname-hostname">Update Hostname</label>
+          <input name="hostname-hostname" type="text" class="form-control" id="hostname-hostname" placeholder="ex: BLDG1-F3-200-R2" value="{{ hostname }}"/>
+          <small id="hostnameHelp" class="form-text text-muted">Enter the new desired hostname.</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Hostname</button>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- End Hostname -->
+
+<!-- Banner -->
+<div id="banner" class="mt-2">
+  <h5>Banner</h5>
+  <ul class="nav nav-tabs" id="bannerTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="banner-show-tab" data-toggle="tab" href="#banner-show">Show</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="banner-config-tab" data-toggle="tab" href="#banner-configure" role="tab" aria-controls="profile" aria-selected="false">Configure</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="bannerTabContent">
+    <!-- Tab Contents -->
+    <div class="tab-pane fade show active" id="banner-show" role="tabpanel">
+      <p><strong>Banner MOTD:</strong></p>
+      <p>{{ bannerMotd }}</p>
+    </div>
+    <!-- Edit Banner -->
+    <div class="tab-pane fade" id="banner-configure" role="tabpanel">
+      <form action="/config/set-banner" method="post">
+        <div class="form-group">
+          <label for="banner-motd">Update Banner</label>
+          <textarea name="banner-motd" class="form-control" id="banner-motd" rows="3">{{ bannerMotd }}</textarea>
+          <small id="bannerHelp" class="form-text text-muted">Enter the new desired message of the day banner.</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Banner</button>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- End Banner -->
+
+
+{% endblock content %}

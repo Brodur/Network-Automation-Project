@@ -31,6 +31,7 @@ class InterfaceAddress:
         # THIS Line will need to be altered for the website, but essentially, we just want user input
         payload = "{\"ietf-ip:address\": [{\"ip\": \"" + ipAddress + "\",\"netmask\": \"" + subnetMask +" \"}]}"
 
+
         # These headers reecive the data in json format
         headers = {'Content-Type': 'application/yang-data+json',
                    'Accept': 'application/yang-data+json'}
@@ -41,3 +42,4 @@ class InterfaceAddress:
 
         # print the json that is returned
         return(response.text)
+

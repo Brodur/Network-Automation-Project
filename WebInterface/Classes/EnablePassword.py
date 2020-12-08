@@ -13,6 +13,7 @@ class EnablePassword:
     def getEnablePassword(self):
         url = "https://{h}/restconf/data/Cisco-IOS-XE-native:native/enable/password/secret".format(h=self.hostAddress)
 
+
         # These headers receive the data in json format
         headers = {'Content-Type': 'application/yang-data+json',
                    'Accept': 'application/yang-data+json'}
@@ -21,7 +22,6 @@ class EnablePassword:
         response = requests.get(url, auth=(self.username, self.password),
                                 headers=headers, verify=False)
 
-        # print the json that is returned
         return(json.loads(response.text)) 
 
     def setEnablePassworde(self, enablePassword):
@@ -30,6 +30,7 @@ class EnablePassword:
 
         # THIS Line will need to be altered for the website, but essentially, we just want user input
         payload = "{\"secret\": \"" + enablePassword + "\"}"
+
 
         # These headers reecive the data in json format
         headers = {'Content-Type': 'application/yang-data+json',
@@ -41,3 +42,4 @@ class EnablePassword:
 
         # print the json that is returned
         return(response.text)
+
