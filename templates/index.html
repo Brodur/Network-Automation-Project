@@ -67,5 +67,157 @@
 </div>
 <!-- End Banner -->
 
+<!-- interface addresses -->
+<div id="interface-addresses" class="mt-2">
+  <h5>Interface Addressing</h5>
+  <ul class="nav nav-tabs" id="interfacesTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="interfaces-show-tab" data-toggle="tab" href="#interfaces-show">Show</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="interfaces-config-tab" data-toggle="tab" href="#interfaces-configure" role="tab" aria-controls="profile" aria-selected="false">Configure</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="interfaceAddressesTabContent">
+    <!-- Tab Contents -->
+    <div class="tab-pane fade show active" id="interfaces-show" role="tabpanel">
+      <!-- Show interfaces -->
+      <p><strong>Interface:</strong> {{ Null }}</p>
+    </div>
+    <div class="tab-pane fade" id="interfaces-configure" role="tabpanel">
+      <!-- Edit interfaces -->
+      <form action="/config/set-interface-ip" method="post">
+        <div class="form-group">
+          <label for="interfaces-interface">Interface</label>
+          <select name="interfaces-interface" id="interfaces-interface" class="form-control">
+            <!-- Once we get all interfaces - dump here in a loop -->
+            <option value="1">Placeholder</option>
+          </select>
+          <small id="interfaceHelp" class="form-text text-muted">Select the interface to edit.</small>
+        </div>
+        <div class="form-group">
+          <label for="interface-address">IP Address</label>
+          <input name="interface-address" type="text" class="form-control" id="interface-address" placeholder="ex: 192.168.24.45"/>
+          <small id="addressHelp" class="form-text text-muted">Enter the new desired IPv4 address.</small>
+        </div>
+        <div class="form-group">
+          <label for="interface-subnet">Subnet Mask</label>
+          <input name="interface-subnet" type="text" class="form-control" id="interface-subnet" placeholder="ex: 255.255.255.252"/>
+          <small id="subnetHelp" class="form-text text-muted">Enter the new subnet mask in decimal notation.</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Address</button>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- End interface addresses -->
+
+<!-- interface descriptions -->
+<div id="interfacesDesc" class="mt-2">
+  <h5>Interface Descriptions</h5>
+  <ul class="nav nav-tabs" id="interfacesDescTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="interfacesDesc-show-tab" data-toggle="tab" href="#interfacesDesc-show">Show</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="interfacesDesc-config-tab" data-toggle="tab" href="#interfacesDesc-configure" role="tab" aria-controls="profile" aria-selected="false">Configure</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="interfacesDescTabContent">
+    <!-- Tab Contents -->
+    <div class="tab-pane fade show active" id="interfacesDesc-show" role="tabpanel">
+      <!-- Show interfacesDesc -->
+      <p><strong>Interface:</strong> {{ Null }}</p>
+    </div>
+    <div class="tab-pane fade" id="interfacesDesc-configure" role="tabpanel">
+      <!-- Edit interfacesDesc -->
+      <form action="/config/set-interface-description" method="post">
+        <div class="form-group">
+          <label for="interfaces-interface">Interface</label>
+          <select name="interfaces-interface" id="interfaces-interface-desc" class="form-control">
+            <!-- Once we get all interfaces - dump here in a loop -->
+            <option value="1">Placeholder</option>
+          </select>
+          <small id="interfaceHelp" class="form-text text-muted">Select the interface to edit.</small>
+        </div>
+        <div class="form-group">
+          <label for="interface-description">Description</label>
+          <input name="interface-description" type="text" class="form-control" id="interface-description" placeholder="ex: The WAN Interface"/>
+          <small id="descriptionHelp" class="form-text text-muted">Enter the new desired description.</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Description</button>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- End interface descriptions -->
+
+<!-- Enable Secret -->
+<div id="enable-secret" class="mt-2">
+  <h5>Enable Password</h5>
+  <ul class="nav nav-tabs" id="enable-secretTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="enable-secret-show-tab" data-toggle="tab" href="#enable-secret-show">Show</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="enable-secret-config-tab" data-toggle="tab" href="#enable-secret-configure" role="tab" aria-controls="profile" aria-selected="false">Configure</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="enable-secretTabContent">
+    <!-- Tab Contents -->
+    <div class="tab-pane fade show active" id="enable-secret-show" role="tabpanel">
+      <!-- Show enable-secret -->
+      <p><strong>enable-secret:</strong> {{ Null }}</p>
+    </div>
+    <div class="tab-pane fade" id="enable-secret-configure" role="tabpanel">
+      <!-- Edit enable-secret -->
+      <form action="/config/set-enabe-password" method="post">
+        <div class="form-group">
+          <label for="enable-secret">Update Password</label>
+          <input name="enabe-password" type="text" class="form-control" id="enable-secret" placeholder="ex: cisco"/>
+          <small id="secretHelp" class="form-text text-muted">Enter the new desired enable secret.</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Password</button>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- End Enable Secret -->
+
+<!-- Console Timeout -->
+<div id="console-timeout" class="mt-2">
+  <h5>Console Timeout</h5>
+  <ul class="nav nav-tabs" id="console-timeoutTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="console-timeout-show-tab" data-toggle="tab" href="#console-timeout-show">Show</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="console-timeout-config-tab" data-toggle="tab" href="#console-timeout-configure" role="tab" aria-controls="profile" aria-selected="false">Configure</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="console-timeoutTabContent">
+    <!-- Tab Contents -->
+    <div class="tab-pane fade show active" id="console-timeout-show" role="tabpanel">
+      <!-- Show console-timeout -->
+      <p><strong>console-timeout:</strong> {{ Null }}</p>
+    </div>
+    <div class="tab-pane fade" id="console-timeout-configure" role="tabpanel">
+      <!-- Edit console-timeout -->
+      <form action="/config/set-console-timeout" method="post">
+        <div class="form-group">
+          <label for="console-timeout-minutes">Minutes</label>
+          <input name="console-timeout-minutes" type="number" class="form-control" id="console-timeout-minutes" min="0" max="35791" value="{{ Null }}"/>
+          <small id="minutesHelp" class="form-text text-muted">Timeout minutes component.</small>
+
+          <label for="console-timeout-minutes">Seconds</label>
+          <input name="console-timeout-seconds" type="number" class="form-control" id="console-timeout-seconds" min="0" max="2147483" value="{{ Null }}"/>
+          <small id="secondsHelp" class="form-text text-muted">Timeout seconds component.</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Timeout</button>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- End Console Timeout -->
 
 {% endblock content %}
