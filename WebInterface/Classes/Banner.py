@@ -9,7 +9,7 @@ class Banner:
         self.hostAddress = hostAddress
         self.username = username
         self.password = password
-    
+
     def getBanner(self):
         url = "https://{h}/restconf/data/Cisco-IOS-XE-native:native/banner/motd/banner".format(h=self.hostAddress)
 
@@ -22,9 +22,9 @@ class Banner:
                                 headers=headers, verify=False)
 
         if (response):
-            return(json.loads(response.text)) 
+            return(json.loads(response.text))
         else:
-            return('Banner Is Not Set') 
+            return(False)
 
     def setBanner(self, banner):
         # url string to issue GET request
