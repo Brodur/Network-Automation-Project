@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+{{ interfaces }}
 <h1>Home</h1>
 <!-- Hostname -->
 <div id="hostname" class="mt-2">
@@ -85,7 +85,31 @@
     <!-- Tab Contents -->
     <div class="tab-pane fade show active" id="interfaces-show" role="tabpanel">
       <!-- Show interfaces -->
-      <p><strong>Interface:</strong> IP address: {{ interfaceIpAddress }} Subnet Mask: {{ interfaceSubnetMask}} - {{ interfaceDesc }}</p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Subnet</th>
+            <th scope="col">Status</th>
+            <th scope="col">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for interface in interfaces %}
+            <tr>
+              <th scope="row">{{ interface.name }}</th>
+              <td>
+              </td>
+              <td>
+              </td>
+              <td>{{ interface.enabled }}</td>
+              <td>{{ interface.description }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
     </div>
     <div class="tab-pane fade" id="interfaces-configure" role="tabpanel">
       <!-- Edit interface Address -->
@@ -94,7 +118,9 @@
           <label for="interfaces-interface">Interface</label>
           <select name="interfaces-interface" id="interfaces-interface" class="form-control">
             <!-- Once we get all interfaces - dump here in a loop -->
-            <option value="1">Placeholder</option>
+            {% for interface in interfaces %}
+              <option value="{{interface.name}}">{{interface.name}}</option>
+            {% endfor %}
           </select>
           <small id="interfaceHelp" class="form-text text-muted">Select the interface to edit.</small>
         </div>
@@ -118,7 +144,9 @@
           <label for="interfaces-interface">Interface</label>
           <select name="interfaces-interface" id="interfaces-interface-desc" class="form-control">
             <!-- Once we get all interfaces - dump here in a loop -->
-            <option value="1">Placeholder</option>
+            {% for interface in interfaces %}
+              <option value="{{interface.name}}">{{interface.name}}</option>
+            {% endfor %}
           </select>
           <small id="interfaceHelp" class="form-text text-muted">Select the interface to edit.</small>
         </div>
