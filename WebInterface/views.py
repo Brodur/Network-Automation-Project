@@ -33,9 +33,8 @@ def index(request):
   returnedBanner = returnedBanner['Cisco-IOS-XE-native:banner']
 
   # get the PASSWORD for the console line
-  # password = enablePassword.getEnablePassword()
-  # password = password['Cisco-IOS-XE-native:secret']
-  password = "test"
+  password = enablePassword.getEnablePassword()
+  password = password['Cisco-IOS-XE-native:secret']
 
   # console timeout separated in minutes and seconds
   timeout = execTimeout.getExecTimeout()
