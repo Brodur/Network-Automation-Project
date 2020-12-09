@@ -82,7 +82,7 @@
     <!-- Tab Contents -->
     <div class="tab-pane fade show active" id="interfaces-show" role="tabpanel">
       <!-- Show interfaces -->
-      <p><strong>Interface:</strong> {{ Null }}</p>
+      <p><strong>Interface:</strong> IP address: {{ interfaceIpAddress }} Subnet Mask: {{ interfaceSubnetMask}}</p>
     </div>
     <div class="tab-pane fade" id="interfaces-configure" role="tabpanel">
       <!-- Edit interfaces -->
@@ -127,7 +127,7 @@
     <!-- Tab Contents -->
     <div class="tab-pane fade show active" id="interfacesDesc-show" role="tabpanel">
       <!-- Show interfacesDesc -->
-      <p><strong>Interface:</strong> {{ Null }}</p>
+      <p><strong>Interface:</strong> {{ interfaceDesc }}</p>
     </div>
     <div class="tab-pane fade" id="interfacesDesc-configure" role="tabpanel">
       <!-- Edit interfacesDesc -->
@@ -167,7 +167,7 @@
     <!-- Tab Contents -->
     <div class="tab-pane fade show active" id="enable-secret-show" role="tabpanel">
       <!-- Show enable-secret -->
-      <p><strong>enable-secret:</strong> {{ Null }}</p>
+      <p><strong>enable-secret:</strong> {{ enablePassword }}</p>
     </div>
     <div class="tab-pane fade" id="enable-secret-configure" role="tabpanel">
       <!-- Edit enable-secret -->
@@ -199,18 +199,18 @@
     <!-- Tab Contents -->
     <div class="tab-pane fade show active" id="console-timeout-show" role="tabpanel">
       <!-- Show console-timeout -->
-      <p><strong>console-timeout:</strong> {{ Null }}</p>
+      <p><strong>console-timeout:</strong> Minutes {{ consoleTimeoutminutes }} seconds {{consoleTimeoutSeconds}}</p>
     </div>
     <div class="tab-pane fade" id="console-timeout-configure" role="tabpanel">
       <!-- Edit console-timeout -->
       <form action="/config/set-console-timeout" method="post">{% csrf_token %}
         <div class="form-group">
           <label for="console-timeout-minutes">Minutes</label>
-          <input name="console-timeout-minutes" type="number" class="form-control" id="console-timeout-minutes" min="0" max="35791" value="{{ Null }}"/>
+          <input name="console-timeout-minutes" type="number" class="form-control" id="console-timeout-minutes" min="0" max="35791" value="{{ consoleTimeoutminutes }}"/>
           <small id="minutesHelp" class="form-text text-muted">Timeout minutes component.</small>
 
           <label for="console-timeout-minutes">Seconds</label>
-          <input name="console-timeout-seconds" type="number" class="form-control" id="console-timeout-seconds" min="0" max="2147483" value="{{ Null }}"/>
+          <input name="console-timeout-seconds" type="number" class="form-control" id="console-timeout-seconds" min="0" max="2147483" value="{{ consoleTimeoutSeconds }}"/>
           <small id="secondsHelp" class="form-text text-muted">Timeout seconds component.</small>
         </div>
         <button type="submit" class="btn btn-primary">Update Timeout</button>
