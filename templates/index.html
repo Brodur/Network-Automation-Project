@@ -57,8 +57,8 @@
       <form action="/config/set-banner" method="post">{% csrf_token %}
         <div class="form-group">
           <label for="banner-motd">Update Banner</label>
-          <textarea name="banner-motd" class="form-control" id="banner-motd" rows="3">{{ bannerMotd }}</textarea>
-          <small id="bannerHelp" class="form-text text-muted">Enter the new desired message of the day banner.</small>
+          <input type="text" name="banner-motd" class="form-control" id="banner-motd" value="{{ bannerMotd }}" placeholder="A Single line banner"/>
+          <small id="bannerHelp" class="form-text text-muted">Enter the new desired message of the day banner. Must be single line banner.</small>
         </div>
         <button type="submit" class="btn btn-primary">Update Banner</button>
       </form>
