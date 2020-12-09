@@ -37,7 +37,7 @@ class InterfaceAddress:
                    'Accept': 'application/yang-data+json'}
 
         # this statement performs a GET on the specified url
-        response = requests.put(url, auth=(self.username, self.password),
+        response = requests.patch(url, auth=(self.username, self.password),
                                 data=payload, headers=headers, verify=False)
 
         # print the json that is returned
