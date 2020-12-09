@@ -21,7 +21,10 @@ class Banner:
         response = requests.get(url, auth=(self.username, self.password),
                                 headers=headers, verify=False)
 
-        return(json.loads(response.text))   
+        if (response):
+            return(json.loads(response.text)) 
+        else:
+            return('Banner Is Not Set') 
 
     def setBanner(self, banner):
         # url string to issue GET request
