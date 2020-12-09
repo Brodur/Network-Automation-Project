@@ -26,7 +26,7 @@ class ExecTimeout:
         # print the json that is returned
         return(json.loads(response.text))  
 
-    def setExecTimeoute(self, execMinutes, execSeconds):
+    def setExecTimeout(self, execMinutes, execSeconds):
         # url string to issue GET request
         url = "https://{h}/restconf/data/Cisco-IOS-XE-native:native/line/console".format(h=self.hostAddress)
 

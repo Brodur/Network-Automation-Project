@@ -21,6 +21,7 @@ intAddress = InterfaceAddress('10.10.20.48','developer','C1sco12345')
 intDescription = InterfaceDescription('10.10.20.48','developer','C1sco12345')
 interfaces = Interfaces('10.10.20.48','developer','C1sco12345')
 
+
 def index(request):   
   # get the hostname from the json for the router
   hostname = hostname1.getHostname()
@@ -77,3 +78,23 @@ def set_banner(request):
 def set_password(request):
     newPassword = enablePassword.setEnablePassword(request.POST.get('enable-password'))
     return redirect('index')
+
+def set_timeout(request):
+    newMinutes = request.POST.get('console-timeout-minutes')
+    newSeconds = request.POST.get('console-timeout-seconds')
+    newTimeout = execTimeout.setExecTimeout(newMinutes, newSeconds)
+    return redirect('index')
+
+def set_interfaceAddress(request):
+      interfaceNumber = request.POST.get('interfaces-interface')
+      interfaceAddress = request.POST.get('interface-address')
+      interfaceSubnet = request.POST.get('interface-subnet')
+      newInterfaceAddress = intAddress.setInterfaceAddress(interfaceAddress, interfaceSubnet, interfaceNumber)
+      return redirect('index')
+
+def set_description(request):
+      interfaceNumber = request.POST.get('interfaces-interface')
+      interfaceDesc = request.POST.get('interface-description')
+      newInterfaceDescription = intDescription.setInterfaceDescription(interfaceDesc, interfaceNumber)
+      return redirect('index')
+      
