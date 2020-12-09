@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 import requests
 import sys
@@ -23,18 +23,19 @@ intDescription = InterfaceDescription('10.10.20.48','developer','C1sco12345')
 
 
 
-def index(request):   
+def index(request):
   # get the hostname from the json for the router
   hostname = hostname1.getHostname()
-  hostname = hostname['Cisco-IOS-XE-native:hostname']   
+  hostname = hostname['Cisco-IOS-XE-native:hostname']
 
   # get the banner from the json for router
   returnedBanner = banner.getBanner()
-  returnedBanner = returnedBanner['Cisco-IOS-XE-native:banner'] 
+  returnedBanner = returnedBanner['Cisco-IOS-XE-native:banner']
 
   # get the PASSWORD for the console line
-  password = enablePassword.getEnablePassword()
-  password = password['Cisco-IOS-XE-native:secret']
+  # password = enablePassword.getEnablePassword()
+  # password = password['Cisco-IOS-XE-native:secret']
+  password = "test"
 
   # console timeout separated in minutes and seconds
   timeout = execTimeout.getExecTimeout()
@@ -45,7 +46,7 @@ def index(request):
   ipAddress = intAddress.getInterfaceAddress('GigabitEthernet1')
   interfaceIpAddress = ipAddress['ietf-ip:address'][0]['ip']
   interfaceSubnetMask = ipAddress['ietf-ip:address'][0]['netmask']
-  
+
   # interface description for the selected interface
   interfaceDesc = intDescription.getInterfaceDescription('GigabitEthernet1')
   interfaceDesc = interfaceDesc['ietf-interfaces:description']
@@ -68,16 +69,16 @@ def index(request):
 
 
 
-def set_hostname(request):      
+def set_hostname(request):
     newHostname = hostname1.setHostname(request.POST.get('hostname-hostname'))
-    return HttpResponse(newHostname)
+    return redirect('index')
 
 
 def set_banner(request):
     newBanner = banner.setBanner(request.POST.get('banner-motd'))
-    return HttpResponse(newBanner)
+    return redirect('index')
 
 
 def set_password(request):
     newPassword = enablePassword.setEnablePassword(request.POST.get('enable-password'))
-    return HttpResponse(newPassword)
+    return redirect('index')
