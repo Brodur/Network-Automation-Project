@@ -21,12 +21,8 @@ intAddress = InterfaceAddress('10.10.20.48','developer','C1sco12345')
 intDescription = InterfaceDescription('10.10.20.48','developer','C1sco12345')
 interfaces = Interfaces('10.10.20.48','developer','C1sco12345')
 
-<<<<<<< HEAD
 def index(request):
-=======
 
-def index(request):   
->>>>>>> d13215464a4c3a72e097c20ede8b0a9fcd529347
   # get the hostname from the json for the router
   hostname = hostname1.getHostname()
   hostname = hostname['Cisco-IOS-XE-native:hostname']
@@ -101,4 +97,4 @@ def set_description(request):
       interfaceDesc = request.POST.get('interface-description')
       newInterfaceDescription = intDescription.setInterfaceDescription(interfaceDesc, interfaceNumber)
       return redirect('index')
-      
+
