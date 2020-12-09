@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 import requests
 import sys
@@ -12,8 +12,6 @@ from .Classes.InterfaceDescription import *
 from .Classes.Interfaces import *
 from django.views.decorators.csrf import csrf_exempt
 
-
-
 # Create your views here.
 hostname1 = Hostname('10.10.20.48','developer','C1sco12345')
 banner = Banner('10.10.20.48','developer','C1sco12345')
@@ -22,8 +20,6 @@ execTimeout = ExecTimeout('10.10.20.48','developer','C1sco12345')
 intAddress = InterfaceAddress('10.10.20.48','developer','C1sco12345')
 intDescription = InterfaceDescription('10.10.20.48','developer','C1sco12345')
 interfaces = Interfaces('10.10.20.48','developer','C1sco12345')
-
-
 
 def index(request):   
   # get the hostname from the json for the router
@@ -40,7 +36,6 @@ def index(request):
         password = password['Cisco-IOS-XE-native:secret']
   else:
         password = password
-  
 
   # console timeout separated in minutes and seconds
   timeout = execTimeout.getExecTimeout()
@@ -51,7 +46,7 @@ def index(request):
   ipAddress = intAddress.getInterfaceAddress('GigabitEthernet1')
   interfaceIpAddress = ipAddress['ietf-ip:address'][0]['ip']
   interfaceSubnetMask = ipAddress['ietf-ip:address'][0]['netmask']
-  
+
   # interface description for the selected interface
   interfaceDesc = intDescription.getInterfaceDescription('GigabitEthernet1')
   interfaceDesc = interfaceDesc['ietf-interfaces:description']
@@ -59,35 +54,26 @@ def index(request):
   # get all the interfaces in the context but is in json
   allinterfaces = interfaces.getInterfaceAddress()
 
-
-
-
   context = {
     'bannerMotd': returnedBanner,
     'hostname': hostname,
     'enablePassword': password,
     'consoleTimeoutminutes': minuteTimeout,
     'consoleTimeoutSeconds': secondsTimeout,
-    'interfaceIpAddress': interfaceIpAddress,
-    'interfaceSubnetMask': interfaceSubnetMask,
-    'interfaceDesc': interfaceDesc,
     'interfaces': allinterfaces
+
   }
 
   return render(request, 'index.html', context)
 
-
-
-def set_hostname(request):      
+def set_hostname(request):
     newHostname = hostname1.setHostname(request.POST.get('hostname-hostname'))
-    return HttpResponse(newHostname)
-
+    return redirect('index')
 
 def set_banner(request):
     newBanner = banner.setBanner(request.POST.get('banner-motd'))
-    return HttpResponse(newBanner)
-
+    return redirect('index')
 
 def set_password(request):
-    newPassword = enablePassword.setEnablePassword(request.POST.get('enabe-password'))
-    return HttpResponse(newPassword)
+    newPassword = enablePassword.setEnablePassword(request.POST.get('enable-password'))
+    return redirect('index')

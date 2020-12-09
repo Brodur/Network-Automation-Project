@@ -57,8 +57,8 @@
       <form action="/config/set-banner" method="post">{% csrf_token %}
         <div class="form-group">
           <label for="banner-motd">Update Banner</label>
-          <textarea name="banner-motd" class="form-control" id="banner-motd" rows="3">{{ bannerMotd }}</textarea>
-          <small id="bannerHelp" class="form-text text-muted">Enter the new desired message of the day banner.</small>
+          <input type="text" name="banner-motd" class="form-control" id="banner-motd" value="{{ bannerMotd }}" placeholder="A Single line banner"/>
+          <small id="bannerHelp" class="form-text text-muted">Enter the new desired message of the day banner. Must be single line banner.</small>
         </div>
         <button type="submit" class="btn btn-primary">Update Banner</button>
       </form>
@@ -75,17 +75,20 @@
       <a class="nav-link active" id="interfaces-show-tab" data-toggle="tab" href="#interfaces-show">Show</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="interfaces-config-tab" data-toggle="tab" href="#interfaces-configure" role="tab" aria-controls="profile" aria-selected="false">Configure</a>
+      <a class="nav-link" id="interfaces-config-tab" data-toggle="tab" href="#interfaces-configure" role="tab" aria-controls="profile" aria-selected="false">Configure Address</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="interfacesDesc-config-tab" data-toggle="tab" href="#interfacesDesc-configure" role="tab" aria-controls="profile" aria-selected="false">Configure Description</a>
     </li>
   </ul>
   <div class="tab-content" id="interfaceAddressesTabContent">
     <!-- Tab Contents -->
     <div class="tab-pane fade show active" id="interfaces-show" role="tabpanel">
       <!-- Show interfaces -->
-      <p><strong>Interface:</strong> IP address: {{ interfaceIpAddress }} Subnet Mask: {{ interfaceSubnetMask}}</p>
+      <p><strong>Interface:</strong> IP address: {{ interfaceIpAddress }} Subnet Mask: {{ interfaceSubnetMask}} - {{ interfaceDesc }}</p>
     </div>
     <div class="tab-pane fade" id="interfaces-configure" role="tabpanel">
-      <!-- Edit interfaces -->
+      <!-- Edit interface Address -->
       <form action="/config/set-interface-ip" method="post">{% csrf_token %}
         <div class="form-group">
           <label for="interfaces-interface">Interface</label>
@@ -108,27 +111,6 @@
         <button type="submit" class="btn btn-primary">Update Address</button>
       </form>
     </div>
-  </div>
-</div>
-<!-- End interface addresses -->
-
-<!-- interface descriptions -->
-<div id="interfacesDesc" class="mt-2">
-  <h5>Interface Descriptions</h5>
-  <ul class="nav nav-tabs" id="interfacesDescTab" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link active" id="interfacesDesc-show-tab" data-toggle="tab" href="#interfacesDesc-show">Show</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="interfacesDesc-config-tab" data-toggle="tab" href="#interfacesDesc-configure" role="tab" aria-controls="profile" aria-selected="false">Configure</a>
-    </li>
-  </ul>
-  <div class="tab-content" id="interfacesDescTabContent">
-    <!-- Tab Contents -->
-    <div class="tab-pane fade show active" id="interfacesDesc-show" role="tabpanel">
-      <!-- Show interfacesDesc -->
-      <p><strong>Interface:</strong> {{ interfaceDesc }}</p>
-    </div>
     <div class="tab-pane fade" id="interfacesDesc-configure" role="tabpanel">
       <!-- Edit interfacesDesc -->
       <form action="/config/set-interface-description" method="post">{% csrf_token %}
@@ -150,7 +132,7 @@
     </div>
   </div>
 </div>
-<!-- End interface descriptions -->
+<!-- End interface addresses -->
 
 <!-- Enable Secret -->
 <div id="enable-secret" class="mt-2">
@@ -171,10 +153,10 @@
     </div>
     <div class="tab-pane fade" id="enable-secret-configure" role="tabpanel">
       <!-- Edit enable-secret -->
-      <form action="/config/set-enabe-password" method="post">{% csrf_token %}
+      <form action="/config/set-enable-password" method="post">{% csrf_token %}
         <div class="form-group">
           <label for="enable-secret">Update Password</label>
-          <input name="enabe-password" type="text" class="form-control" id="enable-secret" placeholder="ex: cisco"/>
+          <input name="enable-password" type="text" class="form-control" id="enable-secret" placeholder="ex: cisco"/>
           <small id="secretHelp" class="form-text text-muted">Enter the new desired enable secret.</small>
         </div>
         <button type="submit" class="btn btn-primary">Update Password</button>
