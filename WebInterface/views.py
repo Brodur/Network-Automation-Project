@@ -85,3 +85,16 @@ def set_timeout(request):
     newTimeout = execTimeout.setExecTimeout(newMinutes, newSeconds)
     return redirect('index')
 
+def set_interfaceAddress(request):
+      interfaceNumber = request.POST.get('interfaces-interface')
+      interfaceAddress = request.POST.get('interface-address')
+      interfaceSubnet = request.POST.get('interface-subnet')
+      newInterfaceAddress = intAddress.setInterfaceAddress(interfaceAddress, interfaceSubnet, interfaceNumber)
+      return redirect('index')
+
+def set_description(request):
+      interfaceNumber = request.POST.get('interfaces-interface')
+      interfaceDesc = request.POST.get('interface-description')
+      newInterfaceDescription = intDescription.setInterfaceDescription(interfaceDesc, interfaceNumber)
+      return redirect('index')
+      
