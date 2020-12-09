@@ -29,14 +29,20 @@ def index(request):
 
   # get the banner from the json for router
   returnedBanner = banner.getBanner()
-  returnedBanner = returnedBanner['Cisco-IOS-XE-native:banner']
+  if not returnedBanner:
+      returnedBanner = 'There is no banner'
+  else:
+      returnedBanner = returnedBanner['Cisco-IOS-XE-native:banner']
+
+  
 
   # get the PASSWORD for the console line
   password = enablePassword.getEnablePassword()
-  if password:
-        password = password['Cisco-IOS-XE-native:secret']
+  if not password:
+        password = 'There is no password'
   else:
-        password = password
+        password = password['Cisco-IOS-XE-native:secret']
+
 
   # console timeout separated in minutes and seconds
   timeout = execTimeout.getExecTimeout()
