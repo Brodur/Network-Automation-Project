@@ -9,6 +9,7 @@ from .Classes.EnablePassword import *
 from .Classes.ExecTimeout import *
 from .Classes.InterfaceAddress import *
 from .Classes.InterfaceDescription import *
+from .Classes.Interfaces import *
 from django.views.decorators.csrf import csrf_exempt
 
 
@@ -34,7 +35,11 @@ def index(request):
 
   # get the PASSWORD for the console line
   password = enablePassword.getEnablePassword()
-  password = password['Cisco-IOS-XE-native:secret']
+  if password:
+        password = password['Cisco-IOS-XE-native:secret']
+  else:
+        password = password
+  
 
   # console timeout separated in minutes and seconds
   timeout = execTimeout.getExecTimeout()
@@ -79,5 +84,5 @@ def set_banner(request):
 
 
 def set_password(request):
-    newPassword = enablePassword.setEnablePassword(request.POST.get('enable-password'))
+    newPassword = enablePassword.setEnablePassword(request.POST.get('enabe-password'))
     return HttpResponse(newPassword)
