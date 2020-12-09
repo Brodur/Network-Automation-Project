@@ -55,6 +55,11 @@ def index(request):
   # get all the interfaces in the context but is in json
   allinterfaces = interfaces.getInterfaceAddress()
 
+  # Rename some keys so values are accessible in the template
+  for i, interface in enumerate(allinterfaces['ietf-interfaces:interfaces']['interface']):
+    allinterfaces['ietf-interfaces:interfaces']['interface'][i]['ipv4'] = allinterfaces['ietf-interfaces:interfaces']['interface'][i]['ietf-ip:ipv4']
+
+
   context = {
     'bannerMotd': returnedBanner,
     'hostname': hostname,

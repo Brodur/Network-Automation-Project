@@ -100,9 +100,18 @@
             <tr>
               <th scope="row">{{ interface.name }}</th>
               <td>
-
+                {% if not interface.ipv4 %}
+                  N/A
+                {% else %}
+                  {{ interface.ipv4.address.0.ip }}
+                {% endif %}
               </td>
               <td>
+                {% if not interface.ipv4 %}
+                  N/A
+                {% else %}
+                  {{ interface.ipv4.address.0.netmask }}
+                {% endif %}
               </td>
               <td>
                 {% if interface.enabled %}
