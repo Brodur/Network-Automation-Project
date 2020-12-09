@@ -21,6 +21,7 @@ enablePassword = EnablePassword('10.10.20.48','developer','C1sco12345')
 execTimeout = ExecTimeout('10.10.20.48','developer','C1sco12345')
 intAddress = InterfaceAddress('10.10.20.48','developer','C1sco12345')
 intDescription = InterfaceDescription('10.10.20.48','developer','C1sco12345')
+interfaces = Interfaces('10.10.20.48','developer','C1sco12345')
 
 
 
@@ -55,6 +56,9 @@ def index(request):
   interfaceDesc = intDescription.getInterfaceDescription('GigabitEthernet1')
   interfaceDesc = interfaceDesc['ietf-interfaces:description']
 
+  # get all the interfaces in the context but is in json
+  allinterfaces = interfaces.getInterfaceAddress()
+
 
 
 
@@ -67,6 +71,7 @@ def index(request):
     'interfaceIpAddress': interfaceIpAddress,
     'interfaceSubnetMask': interfaceSubnetMask,
     'interfaceDesc': interfaceDesc,
+    'interfaces': allinterfaces
   }
 
   return render(request, 'index.html', context)
