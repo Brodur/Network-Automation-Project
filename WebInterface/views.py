@@ -21,14 +21,14 @@ intAddress = InterfaceAddress('10.10.20.48','developer','C1sco12345')
 intDescription = InterfaceDescription('10.10.20.48','developer','C1sco12345')
 interfaces = Interfaces('10.10.20.48','developer','C1sco12345')
 
-def index(request):   
+def index(request):
   # get the hostname from the json for the router
   hostname = hostname1.getHostname()
-  hostname = hostname['Cisco-IOS-XE-native:hostname']   
+  hostname = hostname['Cisco-IOS-XE-native:hostname']
 
   # get the banner from the json for router
   returnedBanner = banner.getBanner()
-  returnedBanner = returnedBanner['Cisco-IOS-XE-native:banner'] 
+  returnedBanner = returnedBanner['Cisco-IOS-XE-native:banner']
 
   # get the PASSWORD for the console line
   password = enablePassword.getEnablePassword()
@@ -60,7 +60,7 @@ def index(request):
     'enablePassword': password,
     'consoleTimeoutminutes': minuteTimeout,
     'consoleTimeoutSeconds': secondsTimeout,
-    'interfaces': allinterfaces
+    'interfaces': allinterfaces['ietf-interfaces:interfaces']['interface']
 
   }
 
